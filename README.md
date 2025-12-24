@@ -1,88 +1,122 @@
-# Housing Price Predictor 🏠
+# 🏠 Housing Price Predictor (Delhi NCR)
 
-This project demonstrates how to build and compare multiple machine learning models for housing price prediction using real-world data.
+This repository contains a complete machine learning pipeline for predicting **housing prices per square foot** in the Delhi NCR region.
 
-The repository allows you to experiment with:
-- Linear Regression
-- Decision Tree Regressor
-- Random Forest Regressor
-- Hyperparameter tuning using GridSearchCV and RandomizedSearchCV
-- Model evaluation using RMSE (Root Mean Squared Error)
-
-Most model pipelines are already implemented, and alternative models or configurations are commented in the code so you can easily enable them and experiment further.
+The goal of this project is to:
+- Build and compare multiple regression models
+- Tune model hyperparameters
+- Evaluate model performance using RMSE
+- Provide a reusable and extensible ML codebase
 
 ---
 
 ## 📊 Dataset
 
-The dataset used in this project was obtained from **Kaggle**.
+The dataset used in this project was obtained from **Kaggle**:
 
-- Source: Kaggle – Delhi Housing Dataset  
-- Target variable: `Price_sqft`
+👉 https://www.kaggle.com/datasets/goelyash/housing-price-dataset-of-delhiindia
 
-The dataset is **not included** in the repository.  
-Download it from Kaggle and update the CSV path in the code before running.
+You must manually download the dataset from Kaggle and place it in the `data/` folder (this repo does *not* include the data due to size/privacy considerations).
 
 ---
 
-## ⚙️ Features Used
+## 🛠 Project Structure
 
-Numerical features:
-- Area
-- Latitude
-- Longitude
-- Bedrooms
-- Bathrooms
-- Balcony
-- Parking
-- Lift
+housing-price-predictor/
+│
+├── data/
+│ └── Delhi_v2.csv # Dataset (not included, download from Kaggle)
+│
+├── model.py # Main Python script
+├── requirements.txt # Dependencies
+├── README.md # Project documentation
+├── .gitignore # Git ignore rules
 
-Categorical features:
-- City (extracted from Address using a custom transformer)
-
----
-
-## 🧠 Models & Techniques
-
-- Custom preprocessing pipeline using `Pipeline` and `ColumnTransformer`
-- Custom `CityExtractor` transformer
-- Stratified train-test split
-- Cross-validation using RMSE
-- Hyperparameter tuning with:
-  - GridSearchCV
-  - RandomizedSearchCV
+yaml
 
 ---
 
-## 🚀 How to Run
+## 🧠 What This Project Does
 
-1. Clone the repository:
+It demonstrates how to:
+
+- Extract meaningful features (e.g., city from address)
+- Build preprocessing pipelines using `ColumnTransformer` and `Pipeline`
+- Compare models such as:
+  - Linear Regression
+  - Decision Tree Regressor
+  - Random Forest Regressor
+- Apply hyperparameter tuning:
+  - Grid Search
+  - Randomized Search
+- Evaluate model performance using **Root Mean Squared Error (RMSE)**
+
+Commented sections of the code allow you to easily enable other models or experiments.
+
+---
+
+## ⚙️ How to Run
+
+1. Clone the repo:
 ```bash
 git clone https://github.com/Trijalmohan/housing-price-predictor.git
+Install dependencies:
 
-2.Install dependencies:
-
+bash
 pip install -r requirements.txt
+Download the dataset from Kaggle and put it here:
 
-3.Update dataset path in the code:
+kotlin
 
-pd.read_csv("path/to/Delhi_v2.csv")
+data/Delhi_v2.csv
+Then update the path in the script if necessary:
 
-4.Run the model:
+python
+data = pd.read_csv("data/Delhi_v2.csv")
+Run the model script:
+
+bash
 
 python model.py
+📈 Model Performance
+Model	Test RMSE
+Linear Regression	~2000
+Decision Tree Regressor	~1500
+Random Forest Regressor (tuned)	~1187
 
-📈 Results
+(values approximate and depend on dataset version and splits)
 
-After hyperparameter tuning using RandomizedSearchCV, the model achieved a significantly lower RMSE, demonstrating the effectiveness of ensemble methods like Random Forest for this problem.
+🧪 Experiment and Learn
+Uncomment alternative model blocks in model.py to try them
 
-🧪 Experimentation
+Adjust hyperparameters or RandomizedSearch ranges
 
-Feel free to uncomment different model pipelines and tuning strategies in the code to:
+Add more features such as sectors or locality clustering
 
-Compare performance
+Try log-transform on the target variable
 
-Adjust hyperparameters
+This repository is meant for experimentation and learning.
 
-Try different feature combinations
-This project is designed for learning, experimentation, and extension.
+🚀 Next Steps
+You could:
+
+Add feature importance visualization
+
+Build a web UI (Streamlit / Flask / FastAPI)
+
+Deploy as an API
+
+Add automated evaluation reports
+
+📌 License
+This work is open to anyone for learning and experimentation.
+Please give credit if reused.
+
+
+
+
+
+
+
+
+
