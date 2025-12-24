@@ -1,77 +1,88 @@
-🏠 Housing Price per Sqft Prediction (Delhi NCR)
+# Housing Price Predictor 🏠
 
-This project builds a machine learning pipeline to predict house price per square foot in the Delhi NCR region using structured real estate data.
+This project demonstrates how to build and compare multiple machine learning models for housing price prediction using real-world data.
 
-📌 Features
+The repository allows you to experiment with:
+- Linear Regression
+- Decision Tree Regressor
+- Random Forest Regressor
+- Hyperparameter tuning using GridSearchCV and RandomizedSearchCV
+- Model evaluation using RMSE (Root Mean Squared Error)
 
-Stratified train–test split
+Most model pipelines are already implemented, and alternative models or configurations are commented in the code so you can easily enable them and experiment further.
 
-Custom feature engineering (City extraction from Address)
+---
 
-Robust preprocessing pipeline (imputation + scaling + encoding)
+## 📊 Dataset
 
-Models implemented:
+The dataset used in this project was obtained from **Kaggle**.
 
-Linear Regression
+- Source: Kaggle – Delhi Housing Dataset  
+- Target variable: `Price_sqft`
 
-Decision Tree Regressor
+The dataset is **not included** in the repository.  
+Download it from Kaggle and update the CSV path in the code before running.
 
-Random Forest Regressor
+---
 
-Hyperparameter tuning using RandomizedSearchCV
+## ⚙️ Features Used
 
-Evaluation using RMSE
+Numerical features:
+- Area
+- Latitude
+- Longitude
+- Bedrooms
+- Bathrooms
+- Balcony
+- Parking
+- Lift
 
-📊 Best Model Performance
-Model	Test RMSE
-Linear Regression	~2000
-Decision Tree	~1500
-Random Forest (tuned)	~1187 ✅
-🧠 Pipeline Overview
-Raw Data
-   ↓
-City Extraction (from Address)
-   ↓
-Numerical Pipeline (Imputer + Scaler)
-   ↓
-Categorical Pipeline (OneHotEncoder)
-   ↓
-Model (Random Forest)
-   ↓
-Prediction
+Categorical features:
+- City (extracted from Address using a custom transformer)
 
-🛠️ How to Run
+---
 
-1️⃣ Clone the repo:
+## 🧠 Models & Techniques
 
-git clone https://github.com/<your-username>/housing-price-predictor.git
-cd housing-price-predictor
+- Custom preprocessing pipeline using `Pipeline` and `ColumnTransformer`
+- Custom `CityExtractor` transformer
+- Stratified train-test split
+- Cross-validation using RMSE
+- Hyperparameter tuning with:
+  - GridSearchCV
+  - RandomizedSearchCV
 
+---
 
-2️⃣ Install dependencies:
+## 🚀 How to Run
+
+1. Clone the repository:
+```bash
+git clone https://github.com/Trijalmohan/housing-price-predictor.git
+
+2.Install dependencies:
 
 pip install -r requirements.txt
 
+3.Update dataset path in the code:
 
-3️⃣ Add dataset:
+pd.read_csv("path/to/Delhi_v2.csv")
 
-data/Delhi_v2.csv
-
-
-4️⃣ Run:
+4.Run the model:
 
 python model.py
 
-🚀 Future Improvements
+📈 Results
 
-Extract locality/sector from Address
+After hyperparameter tuning using RandomizedSearchCV, the model achieved a significantly lower RMSE, demonstrating the effectiveness of ensemble methods like Random Forest for this problem.
 
-Log-transform target variable
+🧪 Experimentation
 
-Add text embeddings from property descriptions
+Feel free to uncomment different model pipelines and tuning strategies in the code to:
 
-Try XGBoost / LightGBM
+Compare performance
 
-⚠️ Note
+Adjust hyperparameters
 
-Dataset is not included due to size/licensing constraints.
+Try different feature combinations
+This project is designed for learning, experimentation, and extension.
